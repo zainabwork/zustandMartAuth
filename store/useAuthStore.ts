@@ -23,7 +23,7 @@ export const useAuthStore = create<AuthStore>((set)=>({
         }
     },
     logout: () => {
-        Cookies.remove('token');
         set({token:null,isAuthenticated:"false"});
+        Cookies.remove('token');
     },
 }));
