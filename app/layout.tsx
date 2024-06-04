@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,9 +15,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <nav className=" bg-gray-300">
+          <ul className="flex my-2">
+          <li className="p-2 border border-black"><Link href='/'>Login</Link></li>
+          <li className="p-2 border border-black"><Link href='/register'>Register</Link></li>
+          <li className="p-2 border border-black"><Link href='/dashboard'>Dashboard</Link></li>
+          </ul>
+        </nav>
+        {children}
+      </body>
     </html>
   );
 }
