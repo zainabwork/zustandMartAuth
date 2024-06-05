@@ -13,14 +13,15 @@ const RegisterFrom = () => {
     const login = useAuthStore((state) => state.login);
     const handleSubmit = async(e: React.FormEvent) => {
         e.preventDefault();
-        saveUser({email,password})
+        
         const user = getUSer(email,password);
+        
         if (user){
           await login(email,password);
-          // console.log("logined too");
          router.push('/dashboard');
      } else {
-         alert('Invalid Credentials');
+          saveUser({email,password});
+          await login(email,password);
      }
         router.push('/');
     }

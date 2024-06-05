@@ -11,5 +11,5 @@ export const saveUser = (user:User) =>{
 
 export const getUSer = (email:string,password:string):User |null =>{
     const users = JSON.parse(localStorage.getItem('users') || '[]');
-    return users.find((user:User)=> user.email ===email && user.password === password) || null;
+    return users.find((user:User)=> user.email === email && user.password === password) || null;
 };
