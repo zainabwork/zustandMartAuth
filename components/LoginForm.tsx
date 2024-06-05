@@ -9,16 +9,17 @@ import { useRouter } from 'next/navigation';
 const LoginForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const login = useAuthStore((state) => state.login);
+    const {login} = useAuthStore();
     const router = useRouter();
 
-    const handleSubmit = async(e:React.FormEvent) => {
+    const handleLogin = async(e:React.FormEvent) => {
         e.preventDefault();
         const user = getUSer(email,password);
         if (user){
              await login(email,password);
             //  console.log("logined");
-            router.push('/dashboard');
+            router.refresh();
+            // router.push('/dashboard');
         } else {
             alert('Invalid Credentials');
         }
@@ -26,7 +27,7 @@ const LoginForm = () => {
     
   return (
     <>
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleLogin}>
       <div>
         <label>Email:</label>
         <input

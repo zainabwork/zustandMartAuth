@@ -13,7 +13,7 @@ const Cart = () => {
 
         <h1 className="text-2xl">Cards products list</h1>
         <br />
-        <p className='my-2'>Total Amount:{getTotalCount()}</p>
+        <p className='my-2'>Total Amount:<strong>{getTotalCount()}</strong></p>
         {cartProducts.length === 0 ? (
           "No cart available"
         ) : (
@@ -25,4 +25,5 @@ const Cart = () => {
   )
 }
 
-export default dynamic(() => Promise.resolve(Cart), { ssr: false });
+// export default dynamic(() => Promise.resolve(Cart), { ssr: false });
+export default Cart

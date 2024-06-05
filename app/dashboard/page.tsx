@@ -12,6 +12,7 @@ import Link from "next/link";
 
 const Dashboard = () => {
   const { logout, isAuthenticated } = useAuthStore();
+  // const logout = useAuthStore((state) => state.logout);
   const router = useRouter();
   const {getCount} = useCartStore();
 // console.log("count:",getCount());
@@ -20,14 +21,17 @@ const Dashboard = () => {
     const token = Cookies.get("token");
     router.push("/dashboard");
     if (!token) {
-      router.push("/");
+      router.refresh();
+      // router.push("/");
     } else {
-      router.push("/dashboard");
+      router.refresh();
+      // router.push("/dashboard");
     }
   }, [isAuthenticated, router, logout]);
 
   const handleLogout = () => {
     logout();
+    router.refresh();
     router.push("/");
   };
   const productsList = [
@@ -64,4 +68,5 @@ const Dashboard = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(Dashboard), { ssr: false });
+// export default dynamic(() => Promise.resolve(Dashboard), { ssr: false });
+export default Dashboard
